@@ -1,0 +1,172 @@
+[gd_resource type="Theme" load_steps=15 format=3]
+
+[ext_resource type="FontFile" path="res://assets/fonts/Nunito-Variable.ttf" id="1"]
+[ext_resource type="FontFile" path="res://assets/fonts/Baloo2-Bold.ttf" id="2"]
+
+[sub_resource type="FontVariation" id="Nunito_Heavy"]
+base_font = ExtResource("1")
+variation_coordinates = { "wght": 900.0 }
+variation_embolden = 0.65
+
+[sub_resource type="StyleBoxFlat" id="Btn_Blue_Normal"]
+bg_color = Color(0.396, 0.780, 0.969, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+shadow_size = 8
+shadow_color = Color(0.15, 0.2, 0.29, 0.25)
+shadow_offset = Vector2(0, 4)
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 22.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Blue_Pressed"]
+bg_color = Color(0.29, 0.65, 0.88, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 26.0
+content_margin_bottom = 18.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Yellow_Normal"]
+bg_color = Color(1.0, 0.851, 0.353, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+shadow_size = 8
+shadow_color = Color(0.15, 0.2, 0.29, 0.25)
+shadow_offset = Vector2(0, 4)
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 22.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Yellow_Pressed"]
+bg_color = Color(0.88, 0.71, 0.20, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 26.0
+content_margin_bottom = 18.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Orange_Normal"]
+bg_color = Color(1.0, 0.624, 0.408, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+shadow_size = 8
+shadow_color = Color(0.15, 0.2, 0.29, 0.25)
+shadow_offset = Vector2(0, 4)
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 22.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Orange_Pressed"]
+bg_color = Color(0.88, 0.48, 0.28, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 26.0
+content_margin_bottom = 18.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Green_Normal"]
+bg_color = Color(0.459, 0.839, 0.506, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+shadow_size = 8
+shadow_color = Color(0.15, 0.2, 0.29, 0.25)
+shadow_offset = Vector2(0, 4)
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 22.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Green_Pressed"]
+bg_color = Color(0.33, 0.70, 0.38, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 26.0
+content_margin_bottom = 18.0
+
+[resource]
+default_font = ExtResource("1")
+default_font_size = 40
+
+Label/fonts/font = ExtResource("1")
+Label/font_sizes/font_size = 36
+Label/colors/font_color = Color(0.149, 0.196, 0.290, 1)
+
+Button/fonts/font = ExtResource("2")
+Button/font_sizes/font_size = 46
+Button/colors/font_color = Color(0.149, 0.196, 0.290, 1)
+Button/colors/font_hover_color = Color(0.149, 0.196, 0.290, 1)
+Button/colors/font_pressed_color = Color(0.149, 0.196, 0.290, 1)
+
+MenuButtonBlue/base_type = &"Button"
+MenuButtonBlue/styles/normal = SubResource("Btn_Blue_Normal")
+MenuButtonBlue/styles/hover = SubResource("Btn_Blue_Normal")
+MenuButtonBlue/styles/pressed = SubResource("Btn_Blue_Pressed")
+MenuButtonBlue/styles/focus = SubResource("Btn_Blue_Normal")
+
+MenuButtonYellow/base_type = &"Button"
+MenuButtonYellow/styles/normal = SubResource("Btn_Yellow_Normal")
+MenuButtonYellow/styles/hover = SubResource("Btn_Yellow_Normal")
+MenuButtonYellow/styles/pressed = SubResource("Btn_Yellow_Pressed")
+MenuButtonYellow/styles/focus = SubResource("Btn_Yellow_Normal")
+
+MenuButtonOrange/base_type = &"Button"
+MenuButtonOrange/styles/normal = SubResource("Btn_Orange_Normal")
+MenuButtonOrange/styles/hover = SubResource("Btn_Orange_Normal")
+MenuButtonOrange/styles/pressed = SubResource("Btn_Orange_Pressed")
+MenuButtonOrange/styles/focus = SubResource("Btn_Orange_Normal")
+
+MenuButtonGreen/base_type = &"Button"
+MenuButtonGreen/styles/normal = SubResource("Btn_Green_Normal")
+MenuButtonGreen/styles/hover = SubResource("Btn_Green_Normal")
+MenuButtonGreen/styles/pressed = SubResource("Btn_Green_Pressed")
+MenuButtonGreen/styles/focus = SubResource("Btn_Green_Normal")
+
+DisplayTitle/base_type = &"Label"
+DisplayTitle/fonts/font = ExtResource("2")
+DisplayTitle/font_sizes/font_size = 88
+DisplayTitle/colors/font_color = Color(0.149, 0.196, 0.290, 1)
+
+DisplaySubtitle/base_type = &"Label"
+DisplaySubtitle/fonts/font = ExtResource("2")
+DisplaySubtitle/font_sizes/font_size = 44
+DisplaySubtitle/colors/font_color = Color(0.149, 0.196, 0.290, 1)
+
+GiantLetter/base_type = &"Label"
+GiantLetter/fonts/font = SubResource("Nunito_Heavy")
+GiantLetter/font_sizes/font_size = 320
+GiantLetter/colors/font_color = Color(0.396, 0.780, 0.969, 1)
+GiantLetter/colors/font_outline_color = Color(0.149, 0.196, 0.290, 1)
+GiantLetter/constants/outline_size = 6
+
+LearnCaption/base_type = &"Label"
+LearnCaption/fonts/font = ExtResource("1")
+LearnCaption/font_sizes/font_size = 52
+LearnCaption/colors/font_color = Color(0.149, 0.196, 0.290, 1)
+
+EmojiDisplay/base_type = &"Label"
+EmojiDisplay/font_sizes/font_size = 140

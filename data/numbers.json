@@ -1,0 +1,12 @@
+[
+  { "number": 1, "word": "ONE", "emoji": "⭐", "voice_number": "1" },
+  { "number": 2, "word": "TWO", "emoji": "⭐", "voice_number": "2" },
+  { "number": 3, "word": "THREE", "emoji": "⭐", "voice_number": "3" },
+  { "number": 4, "word": "FOUR", "emoji": "⭐", "voice_number": "4" },
+  { "number": 5, "word": "FIVE", "emoji": "⭐", "voice_number": "5" },
+  { "number": 6, "word": "SIX", "emoji": "⭐", "voice_number": "6" },
+  { "number": 7, "word": "SEVEN", "emoji": "⭐", "voice_number": "7" },
+  { "number": 8, "word": "EIGHT", "emoji": "⭐", "voice_number": "8" },
+  { "number": 9, "word": "NINE", "emoji": "⭐", "voice_number": "9" },
+  { "number": 10, "word": "TEN", "emoji": "⭐", "voice_number": "10" }
+]
