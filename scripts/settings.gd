@@ -9,6 +9,7 @@ extends Control
 @onready var _voice_slider: HSlider = $Scroll/Center/Panel/VBox/VoiceSliderRow/VoiceSlider
 
 @onready var _reset_button: Button = $Scroll/Center/Panel/VBox/ResetButton
+@onready var _quit_button: Button = $Scroll/Center/Panel/VBox/QuitButton
 @onready var _back_button: Button = $BackButton
 @onready var _confirm_dialog: ConfirmationDialog = $ConfirmResetDialog
 
@@ -52,6 +53,7 @@ func _ready() -> void:
 		GameData.reset_progress()
 		AudioManager.play_sfx("celebration"))
 	_back_button.pressed.connect(func(): Navigation.go_home())
+	_quit_button.pressed.connect(func(): Navigation.request_quit())
 
 func _refresh_toggle_look(button: Button, label: String) -> void:
 	if button.button_pressed:

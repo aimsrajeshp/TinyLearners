@@ -158,6 +158,12 @@ layout_mode = 2
 theme_type_variation = &"MenuButtonOrange"
 text = "🗑️ Reset Progress"
 
+[node name="QuitButton" type="Button" parent="Scroll/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_type_variation = &"MenuButtonPink"
+text = "❌ Quit Game"
+
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 0

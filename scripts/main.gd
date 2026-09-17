@@ -1,21 +1,18 @@
-extends Node2D
-## App entry point: shows the Tiny Learners splash briefly, then opens Home.
+extends Control
+## App entry point: shows a simple loading screen with a progress bar,
+## then opens Home. Kept deliberately simple (no fancy positioning) since
+## this is the very first thing a player sees.
 
 const HOME_SCENE := "res://scenes/home/Home.tscn"
-const SPLASH_HOLD_TIME := 1.4
+const LOAD_TIME := 1.3
 
-@onready var _logo: TextureRect = $CenterContainer/Logo
+@onready var _progress_bar: ProgressBar = $Content/ProgressBar
 
 func _ready() -> void:
 	AudioManager.play_voice("common/welcome")
-	_logo.scale = Vector2(0.7, 0.7)
-	_logo.modulate.a = 0.0
+	_progress_bar.value = 0
 	var tween := create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.tween_property(_logo, "scale", Vector2(1.0, 1.0), 0.5)
-	tween.parallel().tween_property(_logo, "modulate:a", 1.0, 0.4)
-	tween.tween_interval(SPLASH_HOLD_TIME)
+	tween.tween_property(_progress_bar, "value", 100.0, LOAD_TIME)
 	tween.tween_callback(func():
 		get_tree().change_scene_to_file(HOME_SCENE)
 	)

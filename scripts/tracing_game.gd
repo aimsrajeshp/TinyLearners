@@ -21,6 +21,7 @@ func _ready() -> void:
 	_back_button.pressed.connect(func(): Navigation.go_home())
 	_complete_button.pressed.connect(func(): Navigation.go_to(TRACING_MENU, false))
 	_complete_panel.visible = false
+	_trace_pad.stroke_started.connect(_on_stroke_started)
 	_trace_pad.stroke_completed.connect(_on_stroke_completed)
 	_trace_pad.trace_completed.connect(_on_trace_completed)
 	_trace_pad.trace_failed.connect(_on_trace_failed)
@@ -50,14 +51,21 @@ func _show_item() -> void:
 	timer.timeout.connect(func():
 		AudioManager.play_voice(_voice_for(entry)))
 
+func _on_stroke_started() -> void:
+	AudioManager.play_sfx("tracing_start")
+	AudioManager.start_looping_sfx("tracing_loop")
+
 func _on_stroke_completed(_stroke_index: int) -> void:
+	AudioManager.stop_looping_sfx()
 	AudioManager.play_sfx("picture_pop")
 
 func _on_trace_failed() -> void:
+	AudioManager.stop_looping_sfx()
 	AudioManager.play_sfx("tracing_error")
 	AudioManager.play_voice("common/try_again")
 
 func _on_trace_completed() -> void:
+	AudioManager.stop_looping_sfx()
 	AudioManager.play_sfx("tracing_complete")
 	AudioManager.play_voice("common/great_job")
 	var entry: Dictionary = _data[_index]

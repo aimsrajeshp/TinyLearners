@@ -1,11 +1,13 @@
 extends Node
-## Handles scene switching with a small fade transition and a back stack.
+## Handles scene switching with a small fade transition, the Android
+## hardware back button, and quitting.
 
 const HOME_SCENE := "res://scenes/home/Home.tscn"
 
 var _history: Array[String] = []
 var _transition_layer: CanvasLayer
 var _fade_rect: ColorRect
+var _quit_dialog: ConfirmationDialog
 
 func _ready() -> void:
 	_transition_layer = CanvasLayer.new()
@@ -17,6 +19,25 @@ func _ready() -> void:
 	_fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_fade_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_transition_layer.call_deferred("add_child", _fade_rect)
+
+	_quit_dialog = ConfirmationDialog.new()
+	_quit_dialog.title = "Leave Tiny Learners?"
+	_quit_dialog.dialog_text = "Do you want to close the app?"
+	_quit_dialog.confirmed.connect(func(): get_tree().quit())
+	_transition_layer.call_deferred("add_child", _quit_dialog)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		var current_scene := get_tree().current_scene
+		var path := current_scene.scene_file_path if current_scene else ""
+		if path == HOME_SCENE:
+			request_quit()
+		else:
+			go_home()
+
+func request_quit() -> void:
+	AudioManager.play_sfx("button_tap")
+	_quit_dialog.popup_centered()
 
 func go_to(scene_path: String, remember: bool = true) -> void:
 	if remember:

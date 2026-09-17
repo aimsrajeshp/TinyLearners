@@ -7,23 +7,24 @@ extends Control
 ## Glyph data comes from data/trace_paths.json (points in Hershey font
 ## units - see the generator in the Numbers/Alphabet tracing scenes).
 
+signal stroke_started
 signal stroke_completed(stroke_index: int)
 signal trace_completed
 signal trace_failed
 
 const UNIT_HEIGHT := 23.0
-const TOP_MARGIN_RATIO := 0.12
-const HEIGHT_FILL_RATIO := 0.76
-const START_TOLERANCE := 90.0
-const PATH_TOLERANCE := 65.0
-const END_TOLERANCE := 40.0
-const LINE_WIDTH := 46.0
+const TOP_MARGIN_RATIO := 0.08
+const HEIGHT_FILL_RATIO := 0.88
+const START_TOLERANCE := 130.0
+const PATH_TOLERANCE := 95.0
+const END_TOLERANCE := 50.0
+const LINE_WIDTH := 70.0
+const PENCIL_FONT_SIZE := 72
 
 const COLOR_UPCOMING := Color(0.85, 0.87, 0.91, 0.6)
 const COLOR_UNTOUCHED := Color(0.784, 0.804, 0.851, 1.0)
 const COLOR_ACTIVE := Color(0.396, 0.780, 0.969, 1.0)
 const COLOR_DONE := Color(0.459, 0.839, 0.506, 1.0)
-const COLOR_FINGER := Color(1.0, 0.851, 0.353, 1.0)
 
 var glyph_data: Dictionary = {}
 var _scale: float = 1.0
@@ -148,6 +149,7 @@ func _try_begin(pos: Vector2) -> void:
 		_show_finger = true
 		_finger_pos = pos
 		queue_redraw()
+		stroke_started.emit()
 
 func _update_drawing(pos: Vector2) -> void:
 	if not _is_drawing:
@@ -212,4 +214,9 @@ func _draw() -> void:
 			var anchor: Vector2 = _point_at_length(pts, cum, _progress_len)
 			draw_circle(anchor, LINE_WIDTH * 0.55, COLOR_ACTIVE)
 	if _show_finger:
-		draw_circle(_finger_pos, LINE_WIDTH * 0.7, COLOR_FINGER)
+		var font := get_theme_default_font()
+		var text := "✏️"
+		var text_size := font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER, -1, PENCIL_FONT_SIZE)
+		# Anchor the pencil tip (bottom-left of the glyph) at the touch point.
+		var tip_offset := Vector2(text_size.x * 0.12, -text_size.y * 0.15)
+		draw_string(font, _finger_pos - tip_offset, text, HORIZONTAL_ALIGNMENT_LEFT, -1, PENCIL_FONT_SIZE)

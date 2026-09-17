@@ -28,6 +28,7 @@ var _duck_tween: Tween
 
 @onready var _music_player: AudioStreamPlayer = _make_player("Music")
 @onready var _voice_player: AudioStreamPlayer = _make_player("Voice")
+@onready var _loop_player: AudioStreamPlayer = _make_player("SFX")
 var _sfx_players: Array[AudioStreamPlayer] = []
 const SFX_POOL_SIZE := 6
 
@@ -81,6 +82,25 @@ func play_sfx(sfx_name: String) -> void:
 	var player := _get_free_sfx_player()
 	player.stream = load(path)
 	player.play()
+
+func start_looping_sfx(sfx_name: String) -> void:
+	if not sfx_on:
+		return
+	if _loop_player.playing:
+		return
+	var path := _find_resource(SFX_DIR + sfx_name)
+	if path.is_empty():
+		return
+	var stream: AudioStream = load(path)
+	if stream is AudioStreamWAV:
+		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	elif stream is AudioStreamOggVorbis:
+		stream.loop = true
+	_loop_player.stream = stream
+	_loop_player.play()
+
+func stop_looping_sfx() -> void:
+	_loop_player.stop()
 
 func play_voice(voice_name: String) -> void:
 	if not voice_on:
