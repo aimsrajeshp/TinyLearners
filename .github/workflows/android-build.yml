@@ -1,0 +1,106 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths:
+      - "**.gd"
+      - "**.tscn"
+      - "**.tres"
+      - "project.godot"
+      - "export_presets.cfg"
+      - ".github/workflows/android-build.yml"
+
+env:
+  GODOT_VERSION: "4.3-stable"
+  GODOT_VERSION_DIR: "4.3.stable"
+
+jobs:
+  build-debug-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android build-tools
+        run: sdkmanager --install "build-tools;34.0.0" "platform-tools"
+
+      - name: Cache Godot editor + export templates
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot/editor
+            ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION_DIR }}
+          key: godot-${{ env.GODOT_VERSION }}-v1
+
+      - name: Download Godot editor + export templates
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot/editor
+          curl -sL -o /tmp/godot.zip \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          unzip -q /tmp/godot.zip -d ~/godot/editor
+
+          curl -sL -o /tmp/templates.tpz \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_export_templates.tpz"
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION_DIR}
+          unzip -q /tmp/templates.tpz -d /tmp/templates_extracted
+          mv /tmp/templates_extracted/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION_DIR}/
+
+      - name: Generate debug keystore
+        run: |
+          keytool -genkeypair -v \
+            -keystore /tmp/debug.keystore \
+            -storepass android -alias androiddebugkey -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
+
+      - name: Point export preset at the SDK and debug keystore
+        run: |
+          sed -i 's#keystore/debug=""#keystore/debug="/tmp/debug.keystore"#' export_presets.cfg
+          sed -i 's#keystore/debug_user=""#keystore/debug_user="androiddebugkey"#' export_presets.cfg
+          sed -i 's#keystore/debug_password=""#keystore/debug_password="android"#' export_presets.cfg
+
+      - name: Configure Godot editor settings (Android SDK path)
+        run: |
+          mkdir -p ~/.config/godot
+          cat > ~/.config/godot/editor_settings-4.3.tres <<EOF
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          export/android/android_sdk_path = "${ANDROID_SDK_ROOT}"
+          export/android/debug_keystore = "/tmp/debug.keystore"
+          export/android/debug_keystore_user = "androiddebugkey"
+          export/android/debug_keystore_pass = "android"
+          EOF
+
+      - name: Find Godot binary
+        id: godot-bin
+        run: |
+          BIN=$(find ~/godot/editor -maxdepth 1 -type f -iname "Godot_v*" | head -n1)
+          chmod +x "$BIN"
+          echo "path=$BIN" >> "$GITHUB_OUTPUT"
+
+      - name: Import project resources
+        run: "${{ steps.godot-bin.outputs.path }} --headless --import"
+
+      - name: Export debug APK
+        run: |
+          mkdir -p build
+          "${{ steps.godot-bin.outputs.path }}" --headless --export-debug "Android" build/tinylearners.apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tinylearners-debug-apk
+          path: build/tinylearners.apk
