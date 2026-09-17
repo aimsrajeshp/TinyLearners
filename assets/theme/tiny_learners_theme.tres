@@ -1,5 +1,7 @@
 [gd_resource type="Theme" load_steps=15 format=3]
 
+
+
 [ext_resource type="FontFile" path="res://assets/fonts/Nunito-Variable.ttf" id="1"]
 [ext_resource type="FontFile" path="res://assets/fonts/Baloo2-Bold.ttf" id="2"]
 
@@ -108,6 +110,112 @@ content_margin_right = 32.0
 content_margin_top = 26.0
 content_margin_bottom = 18.0
 
+[sub_resource type="StyleBoxFlat" id="Btn_Purple_Normal"]
+bg_color = Color(0.655, 0.545, 0.980, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+shadow_size = 8
+shadow_color = Color(0.15, 0.2, 0.29, 0.25)
+shadow_offset = Vector2(0, 4)
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 22.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Purple_Pressed"]
+bg_color = Color(0.52, 0.42, 0.85, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 26.0
+content_margin_bottom = 18.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Pink_Normal"]
+bg_color = Color(1.0, 0.561, 0.671, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+shadow_size = 8
+shadow_color = Color(0.15, 0.2, 0.29, 0.25)
+shadow_offset = Vector2(0, 4)
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 22.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Pink_Pressed"]
+bg_color = Color(0.88, 0.42, 0.53, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 26.0
+content_margin_bottom = 18.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Gray_Normal"]
+bg_color = Color(0.847, 0.863, 0.902, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+shadow_size = 6
+shadow_color = Color(0.15, 0.2, 0.29, 0.15)
+shadow_offset = Vector2(0, 3)
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 22.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Btn_Gray_Pressed"]
+bg_color = Color(0.75, 0.77, 0.82, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+content_margin_left = 32.0
+content_margin_right = 32.0
+content_margin_top = 26.0
+content_margin_bottom = 18.0
+
+[sub_resource type="StyleBoxFlat" id="Slider_Track"]
+bg_color = Color(0.906, 0.929, 0.965, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="Slider_Fill"]
+bg_color = Color(0.655, 0.545, 0.980, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="SettingsCard"]
+bg_color = Color(1, 1, 1, 0.65)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_left = 40
+corner_radius_bottom_right = 40
+shadow_size = 14
+shadow_color = Color(0.15, 0.2, 0.29, 0.12)
+content_margin_left = 44.0
+content_margin_right = 44.0
+content_margin_top = 44.0
+content_margin_bottom = 44.0
+
 [resource]
 default_font = ExtResource("1")
 default_font_size = 40
@@ -170,3 +278,37 @@ LearnCaption/colors/font_color = Color(0.149, 0.196, 0.290, 1)
 
 EmojiDisplay/base_type = &"Label"
 EmojiDisplay/font_sizes/font_size = 140
+
+MenuButtonPurple/base_type = &"Button"
+MenuButtonPurple/styles/normal = SubResource("Btn_Purple_Normal")
+MenuButtonPurple/styles/hover = SubResource("Btn_Purple_Normal")
+MenuButtonPurple/styles/pressed = SubResource("Btn_Purple_Pressed")
+MenuButtonPurple/styles/focus = SubResource("Btn_Purple_Normal")
+
+MenuButtonPink/base_type = &"Button"
+MenuButtonPink/styles/normal = SubResource("Btn_Pink_Normal")
+MenuButtonPink/styles/hover = SubResource("Btn_Pink_Normal")
+MenuButtonPink/styles/pressed = SubResource("Btn_Pink_Pressed")
+MenuButtonPink/styles/focus = SubResource("Btn_Pink_Normal")
+
+MenuButtonGray/base_type = &"Button"
+MenuButtonGray/styles/normal = SubResource("Btn_Gray_Normal")
+MenuButtonGray/styles/hover = SubResource("Btn_Gray_Normal")
+MenuButtonGray/styles/pressed = SubResource("Btn_Gray_Pressed")
+MenuButtonGray/styles/focus = SubResource("Btn_Gray_Normal")
+MenuButtonGray/colors/font_color = Color(0.42, 0.46, 0.55, 1)
+MenuButtonGray/colors/font_hover_color = Color(0.42, 0.46, 0.55, 1)
+MenuButtonGray/colors/font_pressed_color = Color(0.42, 0.46, 0.55, 1)
+
+SettingsPanel/base_type = &"Panel"
+SettingsPanel/styles/panel = SubResource("SettingsCard")
+
+CaptionLabel/base_type = &"Label"
+CaptionLabel/fonts/font = ExtResource("2")
+CaptionLabel/font_sizes/font_size = 40
+CaptionLabel/colors/font_color = Color(0.149, 0.196, 0.290, 1)
+
+HSlider/styles/slider = SubResource("Slider_Track")
+HSlider/styles/grabber_area = SubResource("Slider_Fill")
+HSlider/styles/grabber_area_highlight = SubResource("Slider_Fill")
+HSlider/constants/grabber_offset = 0

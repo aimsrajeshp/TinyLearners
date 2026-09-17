@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://tracinggame0001"]
+
+[ext_resource type="Script" path="res://scripts/tracing_game.gd" id="1"]
+[ext_resource type="Theme" path="res://assets/theme/tiny_learners_theme.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/trace_pad.gd" id="3"]
+
+[node name="TracingGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(1.0, 0.973, 0.910, 1)
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 120.0
+theme_type_variation = &"MenuButtonBlue"
+text = "←"
+
+[node name="InstructionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 160.0
+offset_top = 60.0
+offset_right = -160.0
+offset_bottom = 130.0
+theme_type_variation = &"DisplayTitle"
+text = "Trace A"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TracePad" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+offset_bottom = -40.0
+script = ExtResource("3")
+
+[node name="CompletePanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -220.0
+offset_right = 260.0
+offset_bottom = 220.0
+theme_type_variation = &"SettingsPanel"
+
+[node name="VBox" type="VBoxContainer" parent="CompletePanel"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="CelebrateLabel" type="Label" parent="CompletePanel/VBox"]
+layout_mode = 2
+theme_type_variation = &"DisplayTitle"
+text = "🎉 Wonderful!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SubLabel" type="Label" parent="CompletePanel/VBox"]
+layout_mode = 2
+theme_type_variation = &"LearnCaption"
+text = "You finished tracing!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DoneButton" type="Button" parent="CompletePanel/VBox"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_type_variation = &"MenuButtonGreen"
+text = "Back to Tracing"

@@ -18,65 +18,155 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(1.0, 0.973, 0.910, 1)
 
-[node name="Panel" type="CenterContainer" parent="."]
+[node name="CloudLeft" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 160.0
+offset_bottom = 170.0
+theme_override_font_sizes/font_size = 56
+text = "☁️"
+
+[node name="StarRight" type="Label" parent="."]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 70.0
+offset_right = 1020.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 48
+text = "⭐"
+
+[node name="Scroll" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 60.0
+horizontal_scroll_mode = 0
 
-[node name="VBox" type="VBoxContainer" parent="Panel"]
+[node name="Center" type="CenterContainer" parent="Scroll"]
 layout_mode = 2
-custom_minimum_size = Vector2(600, 0)
-theme_override_constants/separation = 24
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="TitleLabel" type="Label" parent="Panel/VBox"]
+[node name="Panel" type="PanelContainer" parent="Scroll/Center"]
+layout_mode = 2
+theme_type_variation = &"SettingsPanel"
+
+[node name="VBox" type="VBoxContainer" parent="Scroll/Center/Panel"]
+layout_mode = 2
+custom_minimum_size = Vector2(680, 0)
+theme_override_constants/separation = 22
+
+[node name="TitleLabel" type="Label" parent="Scroll/Center/Panel/VBox"]
 layout_mode = 2
 theme_type_variation = &"DisplayTitle"
 text = "⚙️ Settings"
 horizontal_alignment = 1
 
-[node name="MusicRow" type="HBoxContainer" parent="Panel/VBox"]
+[node name="MusicRow" type="HBoxContainer" parent="Scroll/Center/Panel/VBox"]
 layout_mode = 2
 
-[node name="MusicLabel" type="Label" parent="Panel/VBox/MusicRow"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "🎵 Music"
-
-[node name="MusicToggle" type="CheckButton" parent="Panel/VBox/MusicRow"]
-layout_mode = 2
-
-[node name="SfxRow" type="HBoxContainer" parent="Panel/VBox"]
-layout_mode = 2
-
-[node name="SfxLabel" type="Label" parent="Panel/VBox/SfxRow"]
+[node name="MusicToggle" type="Button" parent="Scroll/Center/Panel/VBox/MusicRow"]
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🔊 Effects"
+toggle_mode = true
+theme_type_variation = &"MenuButtonGreen"
+text = "🎵 Music: ON"
 
-[node name="SfxToggle" type="CheckButton" parent="Panel/VBox/SfxRow"]
+[node name="MusicSliderRow" type="HBoxContainer" parent="Scroll/Center/Panel/VBox"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
-[node name="VoiceRow" type="HBoxContainer" parent="Panel/VBox"]
+[node name="VolLabel1" type="Label" parent="Scroll/Center/Panel/VBox/MusicSliderRow"]
 layout_mode = 2
+theme_type_variation = &"CaptionLabel"
+text = "🔈"
 
-[node name="VoiceLabel" type="Label" parent="Panel/VBox/VoiceRow"]
+[node name="MusicSlider" type="HSlider" parent="Scroll/Center/Panel/VBox/MusicSliderRow"]
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🎙️ Voice"
+max_value = 1.0
+step = 0.05
+value = 0.8
 
-[node name="VoiceToggle" type="CheckButton" parent="Panel/VBox/VoiceRow"]
+[node name="SfxRow" type="HBoxContainer" parent="Scroll/Center/Panel/VBox"]
 layout_mode = 2
 
-[node name="ResetButton" type="Button" parent="Panel/VBox"]
+[node name="SfxToggle" type="Button" parent="Scroll/Center/Panel/VBox/SfxRow"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+theme_type_variation = &"MenuButtonGreen"
+text = "🔊 Effects: ON"
+
+[node name="SfxSliderRow" type="HBoxContainer" parent="Scroll/Center/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VolLabel2" type="Label" parent="Scroll/Center/Panel/VBox/SfxSliderRow"]
+layout_mode = 2
+theme_type_variation = &"CaptionLabel"
+text = "🔈"
+
+[node name="SfxSlider" type="HSlider" parent="Scroll/Center/Panel/VBox/SfxSliderRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="VoiceRow" type="HBoxContainer" parent="Scroll/Center/Panel/VBox"]
+layout_mode = 2
+
+[node name="VoiceToggle" type="Button" parent="Scroll/Center/Panel/VBox/VoiceRow"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+theme_type_variation = &"MenuButtonGreen"
+text = "🎙️ Voice: ON"
+
+[node name="VoiceSliderRow" type="HBoxContainer" parent="Scroll/Center/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VolLabel3" type="Label" parent="Scroll/Center/Panel/VBox/VoiceSliderRow"]
+layout_mode = 2
+theme_type_variation = &"CaptionLabel"
+text = "🔈"
+
+[node name="VoiceSlider" type="HSlider" parent="Scroll/Center/Panel/VBox/VoiceSliderRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Spacer" type="Control" parent="Scroll/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="Scroll/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme_type_variation = &"MenuButtonOrange"
-text = "Reset Progress"
+text = "🗑️ Reset Progress"
 
-[node name="BackButton" type="Button" parent="Panel/VBox"]
-layout_mode = 2
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 120.0
 theme_type_variation = &"MenuButtonBlue"
-text = "← Back"
+text = "←"
 
 [node name="ConfirmResetDialog" type="ConfirmationDialog" parent="."]
 title = "Reset Progress?"

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://alphabettrace0001"]
+
+[ext_resource type="PackedScene" path="res://scenes/common/TracingGame.tscn" id="1"]
+
+[node name="AlphabetTrace" instance=ExtResource("1")]
+mode = "alphabet"

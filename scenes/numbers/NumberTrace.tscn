@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://numbertrace0001"]
+
+[ext_resource type="PackedScene" path="res://scenes/common/TracingGame.tscn" id="1"]
+
+[node name="NumberTrace" instance=ExtResource("1")]
+mode = "number"

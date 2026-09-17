@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://numberquiz0001"]
+
+[ext_resource type="PackedScene" path="res://scenes/common/QuizGame.tscn" id="1"]
+
+[node name="NumberQuiz" instance=ExtResource("1")]
+mode = "number"
